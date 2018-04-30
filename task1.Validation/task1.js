@@ -46,16 +46,26 @@ form.addEventListener("submit", (ev) => {
     let inputUserVal = inputUser.value;
     let inputDateVal = inputDate.value;
 
-    var regexNum = /^[0-9]*$/;
+    var regexNum = /^\d+$/;
     var regexUser = /^user_[a-z]*/;
-    var regexDate = /((0[1-9]|[12]\d|3[01])[/](0[1-9]|1[0-2])[/][12]\d{3})/;
+    var regexDate = /^((0[1-9]|[12]\d|3[01])[/](0[1-9]|1[0-2])[/][12]\d{3})$/;
 
-    if((!regexNum.test(inputAgeVal)) || (!regexUser.test(inputUserVal)) || (!regexDate.test(inputDateVal))){
-        alert('Your data is invalid!');
-        return false;
+    var validationAge = (!regexNum.test(inputAgeVal));
+    var validationUsername = (!regexUser.test(inputUserVal));
+    var validationDate = (!regexDate.test(inputDateVal));
+
+    if(validationAge || validationUsername || validationDate){
+        if(validationAge){
+        alert("Age is invalid");
+        }
+        if(validationUsername){
+        alert("Username is invalid");
+        }
+        if(validationDate){
+        alert("Date is invalid");
+        }
     }else{
-        alert('Your data is right!');
-        return true;
+        alert("Data is right");
     }
     
 });
